@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+</head>
+<body bgcolor=Moccasin>
+<h1 align="center">Hello</h1>
+
+<p th:text="'Your requests:'" />
+</div>
+<table class="tg">
+    <thead>
+    <tr>
+        <th class="tg">Text</th>
+        <th class="tg">Date</th>
+        <th class="tg">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${req}">
+        <td class="tg bg" th:text="${row.text}"></td>
+        <td class="tg bg" th:text="${row.timeOfCreation}"></td>
+        <td class="tg bg" th:text="${row.status}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<form th:action="@{/user}" method="get">
+    <input type="submit" value="Back"/>
+</form>
+
+</body>
+</html>

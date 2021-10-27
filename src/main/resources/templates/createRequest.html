@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+</head>
+<body bgcolor=Moccasin>
+<h1 align="center">Hello</h1>
+
+<form th:action="@{/createRequest}" method="post">
+
+    <p th:text="'Enter text of request:'" />
+    <input type="text" name=text placeholder="text:" />
+    <p th:text="'Choose action(default save draft):'" />
+    <input id="radio_1" name=status type="radio" value="SENT" />
+    <label for="radio_1">Send</label><br />
+    <input id="radio_2" name=status type="radio" value="DRAFT" />
+    <label for="radio_2">Save draft</label><br />
+
+
+    <div><input type="submit" value="Done!"/></div>
+</form>
+
+<form th:action="@{/user}" method="get">
+    <input type="submit" value="Back"/>
+</form>
+
+</body>
+</html>

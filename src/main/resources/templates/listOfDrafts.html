@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+</head>
+<body bgcolor=Moccasin>
+<h1 align="center">Hello</h1>
+
+<p th:text="'Your requests:'" />
+<form th:action="@{/changeDraft}" method="get">
+    <p><b>Select draft for change:</b></p>
+    <p th:each="request : ${req}">
+        <input th:text="${request.text}" name=str type="radio" th:attr="value=${request.id}"  /> <br />
+    </p>
+    <p><input type="submit" value="Select"></p>
+</form>
+
+<form th:action="@{/user}" method="get">
+    <input type="submit" value="Back"/>
+</form>
+
+</body>
+</html>

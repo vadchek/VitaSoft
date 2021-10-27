@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+</head>
+<body bgcolor=Moccasin>
+<h1 align="center">Hello</h1>
+
+<p th:text="'User: ' + ${name}" />
+<p th:text="'Text: ' + ${text}" />
+
+<form th:action="@{/consideration}" method="post">
+    <input type="hidden" name=status value="ACCEPTED"/>
+    <input type="hidden" name=str th:attr="value=${id}"/>
+    <input type="submit" value="Accept"/>
+</form>
+
+<form th:action="@{/consideration}" method="post">
+    <input type="hidden" name=status value="REJECTED"/>
+    <input type="hidden" name=str th:attr="value=${id}"/>
+    <input type="submit" value="Reject"/>
+</form>
+
+<form th:action="@{/operator}" method="get">
+    <input type="submit" value="Back"/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+</head>
+<body bgcolor=Moccasin>
+<h1 align="center">User Page</h1>
+
+<form th:action="@{/}" method="get">
+    <input type="submit" value="Back"/>
+</form>
+
+<form th:action="@{/createRequest}" method="get">
+    <input type="submit" value="New Request"/>
+</form>
+
+<form th:action="@{/listOfRequests}" method="post">
+    <input type="submit" value="See my requests"/>
+</form>
+
+<form th:action="@{/listOfDrafts}" method="get">
+    <input type="submit" value="See my drafts"/>
+</form>
+
+</body>
+</html>

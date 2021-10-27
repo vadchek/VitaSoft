@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+</head>
+<body bgcolor=Moccasin>
+<h1 align="center">Hello</h1>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<form th:action="@{/user}" method="get">
+    <input type="submit" value="Sign as user"/>
+</form>
+
+<form th:action="@{/operator}" method="get">
+    <input type="submit" value="Sign as operator"/>
+</form>
+
+<form th:action="@{/admin}" method="get">
+    <input type="submit" value="Sign as admin"/>
+</form>
+
+</body>
+</html>

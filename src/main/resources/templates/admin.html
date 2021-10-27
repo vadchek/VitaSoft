@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+</head>
+<body bgcolor=Moccasin>
+<h1 align="center">Admin page</h1>
+
+<form th:action="@{/}" method="get">
+    <input type="submit" value="Back"/>
+</form>
+
+<p th:text="'Users:'" />
+<form th:action="@{/selectedUser}" method="get">
+    <p><b>Select request:</b></p>
+    <p th:each="u : ${users}">
+        <input th:text="'User: ' + ${u.username} " name=username type="radio" th:attr="value=${u.username}"  /> <br />
+    </p>
+    <p><input type="submit" value="Select"></p>
+</form>
+
+</body>
+</html>
