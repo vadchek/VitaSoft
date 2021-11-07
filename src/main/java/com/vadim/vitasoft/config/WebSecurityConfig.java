@@ -17,6 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -37,7 +38,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService)
                 .passwordEncoder(new BCryptPasswordEncoder(12));
     }
-
-
 
 }

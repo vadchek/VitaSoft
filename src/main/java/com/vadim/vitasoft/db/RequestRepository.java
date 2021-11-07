@@ -15,17 +15,20 @@ import java.util.Set;
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long> {
     Set<Request> findByAuthorName(String authorName);
+
     Set<Request> findByStatus(RequestStatus status);
+
     Set<Request> findByAuthorNameAndStatus(String authorName, RequestStatus status);
+
     Request findOneById(Long id);
 
     @Modifying
     @Transactional
     @Query("UPDATE Request r SET r.text = :text, r.timeOfCreation = :time, r.status = :status WHERE id = :id")
-    void updateRequest(@Param("id") Long id, @Param("text")String text, @Param("time") LocalDateTime time, @Param("status")RequestStatus status);
+    void updateRequest(@Param("id") Long id, @Param("text") String text, @Param("time") LocalDateTime time, @Param("status") RequestStatus status);
 
     @Modifying
     @Transactional
     @Query("UPDATE Request r SET r.status = :status WHERE id = :id")
-    void updateRequestStatus(@Param("id") Long id, @Param("status")RequestStatus status);
+    void updateRequestStatus(@Param("id") Long id, @Param("status") RequestStatus status);
 }

@@ -34,7 +34,9 @@ public class User implements UserDetails {
         return role;
     }
 
-    public void setRole(Set<Role> role){ this.role = role; }
+    public void setRole(Set<Role> role) {
+        this.role = role;
+    }
 
     public Long getId() {
         return id;

@@ -19,7 +19,9 @@ public class Request {
     @Column(name = "timeofcreation")
     private LocalDateTime timeOfCreation;
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
     public String getText() {
         return text;

@@ -36,11 +36,11 @@ public class RequestController {
     @PreAuthorize("hasAuthority('OPERATOR')")
     public String operatorPage(Model model) {
         Iterable<Request> requests = requestService.getRequestsByStatus(RequestStatus.SENT);
-        for (Request r : requests){
+        for (Request r : requests) {
 
             char[] text = r.getText().toCharArray();
             String newText = "" + text[0];
-            for(int i = 1; i < text.length; i++){
+            for (int i = 1; i < text.length; i++) {
                 newText = newText + "-" + text[i];
             }
             r.setText(newText);
@@ -51,13 +51,13 @@ public class RequestController {
 
     @GetMapping("/consideration")
     @PreAuthorize("hasAuthority('OPERATOR')")
-    public String getConsideration(@RequestParam String str, Model model){
+    public String getConsideration(@RequestParam String str, Model model) {
         Long id = Long.parseLong(str);
         Request request;
         request = requestService.findById(id);
         char[] text = request.getText().toCharArray();
         String newText = "" + text[0];
-        for(int i = 1; i < text.length; i++){
+        for (int i = 1; i < text.length; i++) {
             newText = newText + "-" + text[i];
         }
         request.setText(newText);
@@ -69,7 +69,7 @@ public class RequestController {
 
     @PostMapping("/consideration")
     @PreAuthorize("hasAuthority('OPERATOR')")
-    public String postConsideration(@RequestParam RequestStatus status, @RequestParam String str){
+    public String postConsideration(@RequestParam RequestStatus status, @RequestParam String str) {
         Long id = Long.parseLong(str);
         requestService.updateRequestStatus(id, status);
         return "redirect:/operator";
@@ -84,14 +84,14 @@ public class RequestController {
     @PostMapping("/createRequest")
     @PreAuthorize("hasAuthority('USER')")
     public String createRequest(@AuthenticationPrincipal User user, @RequestParam(defaultValue = "") String text,
-                                @RequestParam(defaultValue = "DRAFT") RequestStatus status, Model model){
-        requestService.createRequest(text, user.getUsername(),status);
+                                @RequestParam(defaultValue = "DRAFT") RequestStatus status, Model model) {
+        requestService.createRequest(text, user.getUsername(), status);
         return "redirect:/user";
     }
 
     @GetMapping("/changeDraft")
     @PreAuthorize("hasAuthority('USER')")
-    public String changeDraftPage(@AuthenticationPrincipal User user, @RequestParam String str, Model model){
+    public String changeDraftPage(@AuthenticationPrincipal User user, @RequestParam String str, Model model) {
         Request request;
         Long id = Long.parseLong(str);
         request = requestService.findById(id);
@@ -103,7 +103,7 @@ public class RequestController {
     @PostMapping("/changeDraft")
     @PreAuthorize("hasAuthority('USER')")
     public String changeDraft(@AuthenticationPrincipal User user, @RequestParam String str, @RequestParam(defaultValue = "") String text,
-                                @RequestParam(defaultValue = "DRAFT") RequestStatus status, Model model){
+                              @RequestParam(defaultValue = "DRAFT") RequestStatus status, Model model) {
         Long id = Long.parseLong(str);
         requestService.updateRequest(id, text, LocalDateTime.now(), status);
         return "redirect:/user";
@@ -111,7 +111,7 @@ public class RequestController {
 
     @PostMapping("/listOfRequests")
     @PreAuthorize("hasAuthority('USER')")
-    public String list(@AuthenticationPrincipal User user, Model model){
+    public String list(@AuthenticationPrincipal User user, Model model) {
         Iterable<Request> requests = requestService.getRequestsByAuthorName(user.getUsername());
         model.addAttribute("req", requests);
         return "listOfRequests";
@@ -119,7 +119,7 @@ public class RequestController {
 
     @GetMapping("/listOfDrafts")
     @PreAuthorize("hasAuthority('USER')")
-    public String listOfDrafts(@AuthenticationPrincipal User user, Model model){
+    public String listOfDrafts(@AuthenticationPrincipal User user, Model model) {
         Iterable<Request> requests = requestService.getRequestsByAuthorNameAndStatus(user.getUsername(), RequestStatus.DRAFT);
         model.addAttribute("req", requests);
         return "listOfDrafts";
